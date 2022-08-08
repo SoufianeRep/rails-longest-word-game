@@ -11,12 +11,12 @@ class GamesController < ApplicationController
     grid = params[:grid_token]
     @result = { time: finish - start, score: 0 }
     if word_api_check(word)['found'] && word_match_grid?(word, grid)
-      @result[:message] = "Congratulations '#{word.upcase}' is a valid english word"
+      @result[:message] = "Congratulations #{word.upcase} is a valid english word"
       @result[:score] = grid.size - (finish - start).ceil
     elsif !word_api_check(word)['found']
-      @result[:message] = "Sorry but '#{word.upcase}' does not seem to be a valid english word..."
+      @result[:message] = "Sorry but #{word.upcase} does not seem to be a valid english word..."
     else
-      @result[:message] = "Sorry but '#{word.upcase}' can\'t built out of #{grid.upcase}"
+      @result[:message] = "Sorry but #{word.upcase} can\'t built out of #{grid.upcase}"
     end
   end
 
